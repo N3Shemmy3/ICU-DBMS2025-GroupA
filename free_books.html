@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Website</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking external CSS file -->
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple-icons/siimple-icons.css" />
+ <body>
+    
+    <!-- Navigation Menu -->
+    <nav id="nav">
+        <div class="mobile-nav">
+            <div class="nav-logo">
+                ICU Library
+            </div>
+            <div id="menu-btn" class="menu-btn">
+                <i class="si-bars"></i>
+            </div>
+        </div>
+        
+
+        <ul id="menu-links" class="links">
+            <li id="home" ><a class="home" id="a-home" href="#home">Home</a></li>
+            <li id="about"><a id="a_about" href="#about">About</a></li>
+            <li id="services"><a id="a_services" href="#services">Services</a></li>
+            <li id="contact"><a id="a_contact" href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+        <body id="body">
+            <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Books</title>
+    <link rel="stylesheet" href="styles.css">
+        <!-- Header Section -->
+        <header id="header">
+          
+            <div class="header-text">
+                <h1>Welcome to Our Library</h1>
+                <p>Your gateway to knowledge and information.</p>
+            </div>
+            <br>
+            <div class="logo">
+                <img src="./images/images (1).jpeg" alt="">
+            </div>
+    <h1>Search for Free Books</h1>
+    <input type="text" id="searchInput" placeholder="Enter book title...">
+    <button onclick="searchBooks()">Search</button>
+    
+    <div id="book-list"></div>
+
+    <script>
+        function searchBooks() {
+            let query = document.getElementById('searchInput').value;
+            if (!query) {
+                alert('Please enter a book title.');
+                return;
+            }
+
+            fetch(`https://openlibrary.org/search.json?q=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                let books = data.docs.slice(0, 10); // Get first 10 results
+                let bookList = document.getElementById('book-list');
+                bookList.innerHTML = ""; // Clear previous results
+                
+                books.forEach(book => {
+                    let title = book.title || "Unknown Title";
+                    let author = book.author_name ? book.author_name.join(", ") : "Unknown Author";
+                    let link = book.key ? `https://openlibrary.org${book.key}` : "#";
+                    
+                    let bookDiv = document.createElement('div');
+                    bookDiv.classList.add('book');
+                    bookDiv.innerHTML = `<h3>${title}</h3><p>Author: ${author}</p><a href="${link}" target="_blank">Read More</a>`;
+                    
+                    bookList.appendChild(bookDiv);
+                });
+            })
+            .catch(error => console.error("Error fetching books:", error));
+        }
+    </script>
+     </section>
+    
+     <!-- Footer Section -->
+     <footer>
+         <p>&copy; 2025 Library Website. All rights reserved.</p>
+     </footer>
+</body>
+</html>
+<link rel="stylesheet" href="style.css">
