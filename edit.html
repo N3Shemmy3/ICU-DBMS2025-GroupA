@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Navigation</title>
+  </head>
+  <style>
+    body {
+      width: 100%;
+      height: 100dvh;
+      margin: 0px;
+      display: flex;
+      flex-direction: column;
+      background-color: #111111;
+      color: #ffffff;
+    }
+
+    header {
+      width: 100%;
+      height: 56px;
+    }
+
+    main {
+      height: fit-content;
+      width: 100%;
+      margin: auto;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      background-color: #141414;
+      padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+      main {
+        width: fit-content;
+        min-width: 450px;
+        border: #999 1px solid;
+        border-radius: 8px;
+      }
+    }
+
+    main * {
+      margin-bottom: 12px;
+    }
+
+    .nav-edit-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .input-container {
+      width: 100%;
+      position: relative;
+    }
+    .input-container input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #999;
+      color: #fafafa;
+      border-radius: 4px;
+      background: none;
+      font-size: 18px;
+      box-sizing: border-box;
+    }
+
+    .input-container input:focus {
+      display: block;
+      outline: none;
+      border-color: #5264ae;
+    }
+
+    .input-container input::placeholder {
+      color: transparent;
+    }
+
+    .input-container input:focus::placeholder {
+      color: #999;
+    }
+
+    .input-container label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 16px;
+      color: #999;
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+
+    .input-container input:focus ~ label,
+    .input-container input:not(:placeholder-shown) ~ label {
+      top: -10px;
+      left: 10px;
+      font-size: 14px;
+      color: #5264ae;
+      background: #141414;
+      padding: 0 2px;
+    }
+    button {
+      width: fit-content;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      background: none;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #fafafa;
+      background-color: #5264ae;
+      margin: 0px;
+    }
+    button:hover {
+      transition: 0.2s ease all;
+      background-color: #5264ae70;
+    }
+  </style>
+
+  <body>
+    <main>
+      <header>
+        <h3 style="font-size: x-large">Edit Page</h3>
+      </header>
+      <!-- Form to update navigation items -->
+      <form action="update_nav.php" method="POST">
+        <!-- Input for header title -->
+        <div class="input-container">
+          <input type="text" name="header_title" placeholder=" " required />
+          <label>Header title</label>
+        </div>
+        <!-- Input for header subtitle -->
+        <div class="input-container">
+          <input type="text" name="header_subtitle" placeholder=" " required />
+          <label>Header subtitle</label>
+        </div>
+        <!-- Section to edit navigation items -->
+        <div class="nav-edit-container">
+          <h4>Edit Navigation Items</h4>
+          <!-- Input for navigation item 1 -->
+          <div class="input-container">
+            <input type="text" name="nav_item_1" placeholder=" " required />
+            <label>Item 1</label>
+          </div>
+          <!-- Input for navigation item 2 -->
+          <div class="input-container">
+            <input type="text" name="nav_item_2" placeholder=" " required />
+            <label>Item 2</label>
+          </div>
+          <!-- Input for navigation item 3 -->
+          <div class="input-container">
+            <input type="text" name="nav_item_3" placeholder=" " required />
+            <label>Item 3</label>
+          </div>
+          <!-- Input for navigation item 4 -->
+          <div class="input-container">
+            <input type="text" name="nav_item_4" placeholder=" " required />
+            <label>Item 4</label>
+          </div>
+        </div>
+        <!-- Add more nav items as needed -->
+        <button type="submit">Update</button>
+      </form>
+    </main>
+  </body>
+</html>
