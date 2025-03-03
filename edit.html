@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library Navigation</title>
+    <title>Edit Navigation</title>
+    <style>
+      /* Add your existing CSS styles here */
+    </style>
   </head>
   <style>
     body {
@@ -120,45 +123,88 @@
       <header>
         <h3 style="font-size: x-large">Edit Page</h3>
       </header>
-      <!-- Form to update navigation items -->
       <form action="update_nav.php" method="POST">
-        <!-- Input for header title -->
         <div class="input-container">
-          <input type="text" name="header_title" placeholder=" " required />
+          <input
+            type="text"
+            name="header_title"
+            id="header_title"
+            placeholder=" "
+            required
+          />
           <label>Header title</label>
         </div>
-        <!-- Input for header subtitle -->
         <div class="input-container">
-          <input type="text" name="header_subtitle" placeholder=" " required />
+          <input
+            type="text"
+            name="header_subtitle"
+            id="header_subtitle"
+            placeholder=" "
+            required
+          />
           <label>Header subtitle</label>
         </div>
-        <!-- Section to edit navigation items -->
         <div class="nav-edit-container">
           <h4>Edit Navigation Items</h4>
-          <!-- Input for navigation item 1 -->
           <div class="input-container">
-            <input type="text" name="nav_item_1" placeholder=" " required />
-            <label>Item 1</label>
+            <input
+              type="text"
+              name="nav_item_1"
+              id="nav_item_1"
+              placeholder=" "
+              required
+            />
+            <label>Nav Item 1</label>
           </div>
-          <!-- Input for navigation item 2 -->
           <div class="input-container">
-            <input type="text" name="nav_item_2" placeholder=" " required />
-            <label>Item 2</label>
+            <input
+              type="text"
+              name="nav_item_2"
+              id="nav_item_2"
+              placeholder=" "
+              required
+            />
+            <label>Nav Item 2</label>
           </div>
-          <!-- Input for navigation item 3 -->
           <div class="input-container">
-            <input type="text" name="nav_item_3" placeholder=" " required />
-            <label>Item 3</label>
+            <input
+              type="text"
+              name="nav_item_3"
+              id="nav_item_3"
+              placeholder=" "
+              required
+            />
+            <label>Nav Item 3</label>
           </div>
-          <!-- Input for navigation item 4 -->
           <div class="input-container">
-            <input type="text" name="nav_item_4" placeholder=" " required />
-            <label>Item 4</label>
+            <input
+              type="text"
+              name="nav_item_4"
+              id="nav_item_4"
+              placeholder=" "
+              required
+            />
+            <label>Nav Item 4</label>
           </div>
         </div>
-        <!-- Add more nav items as needed -->
         <button type="submit">Update</button>
       </form>
     </main>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("fetch_nav_data.php")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("header_title").value = data.header_title;
+            document.getElementById("header_subtitle").value =
+              data.header_subtitle;
+            document.getElementById("nav_item_1").value = data.nav_item_1;
+            document.getElementById("nav_item_2").value = data.nav_item_2;
+            document.getElementById("nav_item_3").value = data.nav_item_3;
+            document.getElementById("nav_item_4").value = data.nav_item_4;
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      });
+    </script>
   </body>
 </html>

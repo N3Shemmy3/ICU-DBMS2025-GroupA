@@ -16,8 +16,8 @@
     <!-- Header Section -->
     <header id="header">
       <div class="header-text">
-        <h1><?php echo htmlspecialchars($header_title); ?></h1>
-        <p><?php echo htmlspecialchars($header_subtitle); ?></p>
+        <h1 id="header_title">Welcome to Our Library</h1>
+        <p id="header_subtitle">Your gateway to knowledge and information.</p>
       </div>
       <br />
       <div class="logo">
@@ -36,25 +36,14 @@
 
       <ul id="menu-links" class="links">
         <li id="home">
-          <a class="home" id="a-home" href="index.html"
-            ><?php echo htmlspecialchars($nav_item_1); ?></a
-          >
+          <a class="home" id="a-home" href="index.html">Home</a>
         </li>
-        <li id="about">
-          <a id="a_about" href="#about"
-            ><?php echo htmlspecialchars($nav_item_2); ?></a
-          >
-        </li>
+        <li id="about"><a id="a_about" href="#about">About</a></li>
         <li id="services">
-          <a id="a_services" href="free_books.html"
-            ><?php echo htmlspecialchars($nav_item_3); ?></a
-          >
+          <a id="a_services" href="free_books.html">Services</a>
         </li>
-        <li id="contact">
-          <a id="a_contact" href="#contact"
-            ><?php echo htmlspecialchars($nav_item_4); ?></a
-          >
-        </li>
+        <li id="contact"><a id="a_contact" href="#contact">Contact</a></li>
+        <li id="edit"><a id="edit" href="./edit.html">Edit</a></li>
       </ul>
     </nav>
 
@@ -150,6 +139,22 @@
       <p>&copy; 2025 Library Website. All rights reserved.</p>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("fetch_nav_data.php")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("header_title").textContent =
+              data.header_title;
+            document.getElementById("header_subtitle").textContent =
+              data.header_subtitle;
+            document.getElementById("a-home").textContent = data.nav_item_1;
+            document.getElementById("a_about").textContent = data.nav_item_2;
+            document.getElementById("a_services").textContent = data.nav_item_3;
+            document.getElementById("a_contact").textContent = data.nav_item_4;
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      });
+    </script>
   </body>
 </html>

@@ -32,7 +32,9 @@ $sql = "UPDATE navigation SET
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
-
+ // Redirect to another page
+    header("Location: index.html");
+    exit();
 } else {
     echo "Error updating record: " . $conn->error;
 }
